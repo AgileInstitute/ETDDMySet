@@ -14,5 +14,11 @@ public class MySetTests {
         Set set = new Set();
         assertThat(set.isEmpty(), is(true));
     }
+    @Test
+    public void isNotEmptyWhenOneItemIncludedInConstructor() {
+        String[] elements = { "foo" };
+        Set set = new Set(elements);
+        assertThat(set.isEmpty(), is(false));
+    }
 
 }
