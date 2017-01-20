@@ -1,1 +1,7 @@
 .idea
+
+*.class
+*.jar
+*.war
+*.ear
+
