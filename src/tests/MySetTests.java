@@ -2,6 +2,7 @@ package tests;
 
 import myset.Set;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -16,7 +17,7 @@ public class MySetTests {
         // when/then
         assertThat(set.contains("bar"), is(false));
     }
-    @Test
+    @Test @DisplayName("contains an element (spec style avoids typos)")
     public void containsAnElement() {
         // given
         String itemToFind = "FO0";
