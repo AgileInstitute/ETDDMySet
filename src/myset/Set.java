@@ -15,9 +15,9 @@ public class Set {
         return elements.length == 0;
     }
 
-    public boolean contains(String itemToFind) {
+    public boolean contains(String elementToFind) {
         for (String element : elements) {
-            if (element.equals(itemToFind))
+            if (element.equals(elementToFind))
                 return true;
         }
         return false;
