@@ -3,16 +3,15 @@ package tests;
 import myset.Set;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MySetTests {
-    public static final String ITEM_TO_FIND =
+    private static final String ITEM_TO_FIND =
             "Not the 1st item and contains a typ0";
-    Set set;
+    private Set set;
 
     @BeforeEach
     public void initializeSet() {
