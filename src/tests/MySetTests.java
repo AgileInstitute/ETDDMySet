@@ -37,7 +37,7 @@ public class MySetTests {
 
     @Test
     public void isEmptyWhenConstructed() {
-        set = new Set();
-        assertThat(set.isEmpty(), is(true));
+        Set emptySet = new Set();
+        assertThat(emptySet.isEmpty(), is(true));
     }
 }
