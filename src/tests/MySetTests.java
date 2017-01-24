@@ -4,8 +4,12 @@ import myset.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.security.InvalidParameterException;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MySetTests {
@@ -19,6 +23,17 @@ public class MySetTests {
                 "some uninteresting item",
                 ITEM_TO_FIND });
     }
+
+    @Test
+    public void throwsOnNullElement() {
+        assertThrows(InvalidParameterException.class,
+                () -> {
+                    new Set(new String[]{
+                            "good element before bad data",
+                            null});
+                });
+    }
+
 
     @Test
     public void doesNotContainAnElement() {

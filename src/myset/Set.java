@@ -1,9 +1,16 @@
 package myset;
 
+import java.security.InvalidParameterException;
+
 public class Set {
     private final String[] elements;
 
     public Set(String[] elements) {
+        for (String candidate : elements) {
+            if (candidate == null) {
+                throw new InvalidParameterException();
+            }
+        }
         this.elements = elements;
     }
 
