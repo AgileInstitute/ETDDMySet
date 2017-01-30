@@ -8,18 +8,17 @@ import static org.hamcrest.CoreMatchers.containsString;
 
 public class MySetExceptionTests {
     @Test
-    public void messageFormatsNullStringCorrectly() {
+    public void messageFormatsNullReference() {
         InvalidElementException myException =
                 new InvalidElementException(null);
         assertThat(myException.getMessage(),
-                containsString("null"));
+                containsString("[null]"));
     }
     @Test
-    public void messageContainsInvalidValue() {
-        String badValue = "bleep!";
+    public void messageContainsTheInvalidValue() {
         InvalidElementException myException =
-                new InvalidElementException(badValue);
+                new InvalidElementException("bleep!");
         assertThat(myException.getMessage(),
-                containsString(badValue));
+                containsString("[\"bleep!\"]"));
     }
 }

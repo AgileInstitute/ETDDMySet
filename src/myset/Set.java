@@ -8,7 +8,7 @@ public class Set {
     public Set(String[] elements) {
         for (String candidate : elements) {
             if (candidate == null) {
-                throw new InvalidParameterException();
+                throw new InvalidElementException(candidate);
             }
         }
         this.elements = elements;

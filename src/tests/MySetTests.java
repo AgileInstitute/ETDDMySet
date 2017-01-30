@@ -1,5 +1,6 @@
 package tests;
 
+import myset.InvalidElementException;
 import myset.Set;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +27,7 @@ public class MySetTests {
 
     @Test
     public void throwsOnNullElement() {
-        assertThrows(InvalidParameterException.class,
+        assertThrows(InvalidElementException.class,
                 () -> {
                     new Set(new String[]{
                             "good element before bad data",
