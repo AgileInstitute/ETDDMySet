@@ -7,13 +7,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.security.InvalidParameterException;
-
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class MySetTests {
+public class MyBasicSetTests {
     private static final String ITEM_TO_FIND =
             "Not the 1st item and contains a typ0";
     private Set set;
