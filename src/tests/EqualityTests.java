@@ -5,10 +5,8 @@ package tests;
  * Copyright (c) Robert Myers 2017.
  */
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import myset.Set;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
