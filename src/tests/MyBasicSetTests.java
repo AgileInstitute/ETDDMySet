@@ -7,8 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class MyBasicSetTests {
     private static final String ITEM_TO_FIND =
@@ -35,22 +34,22 @@ public class MyBasicSetTests {
 
     @Test
     public void doesNotContainAnElement() {
-        assertThat(set.contains("not an element"), is(false));
+        assertThat(set.contains("not an element")).isFalse();
     }
 
     @Test
     public void containsAnElement() {
-        assertThat(set.contains(ITEM_TO_FIND), is(true));
+        assertThat(set.contains(ITEM_TO_FIND)).isTrue();
     }
 
     @Test
     public void isNotEmpty() {
-        assertThat(set.isEmpty(), is(false));
+        assertThat(set.isEmpty()).isFalse();
     }
 
     @Test
     public void isEmptyWhenConstructed() {
         Set emptySet = new Set();
-        assertThat(emptySet.isEmpty(), is(true));
+        assertThat(emptySet.isEmpty()).isTrue();
     }
 }
