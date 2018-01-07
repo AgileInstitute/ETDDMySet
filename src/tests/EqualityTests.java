@@ -9,8 +9,8 @@ import myset.Set;
 
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class EqualityTests {
     private final Set aSet = new Set(new String[] { "this", "is", "interesting!" });
@@ -18,29 +18,28 @@ public class EqualityTests {
 
     @Test
     public void operationIsCommutative() {
-        assertThat(anEqualSet.isEqualTo(aSet), is(true));
+        assertThat(anEqualSet.isEqualTo(aSet)).isTrue();
     }
 
     @Test
     public void twoSetsAreEqualWhenTheyHaveTheExactSameElements() {
-        assertThat(aSet.isEqualTo(anEqualSet), is(true));
+        assertThat(aSet.isEqualTo(anEqualSet)).isTrue();
     }
 
     @Test
     public void whenSetsAreTheSameObject() {
-        assertThat(aSet.isEqualTo(aSet), is(true));
+        assertThat(aSet.isEqualTo(aSet)).isTrue();
     }
 
     @Test
     public void whenSetsAreNotEqual() {
         Set aDifferentSet = new Set(new String[] {"also", "interesting!" });
-        assertThat(aSet.isEqualTo(aDifferentSet), is(false));
+        assertThat(aSet.isEqualTo(aDifferentSet)).isFalse();
     }
 
     @Test
     public void integerHashcodeIsObvious() {
         int reliantPrefixCode = 16309;
-        assertThat(new Integer(reliantPrefixCode).hashCode(),
-                is(reliantPrefixCode));
+        assertThat(new Integer(reliantPrefixCode).hashCode()).isEqualTo(reliantPrefixCode);
     }
 }
