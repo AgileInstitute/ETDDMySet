@@ -38,7 +38,7 @@ public class EqualityTests {
     }
 
     @Test
-    public void integerHashcodeIsObvious() {
+    public void integerHashcodeIsObviousForSmallIntegers() {
         int reliantPrefixCode = 16309;
         assertThat(new Integer(reliantPrefixCode).hashCode()).isEqualTo(reliantPrefixCode);
     }
