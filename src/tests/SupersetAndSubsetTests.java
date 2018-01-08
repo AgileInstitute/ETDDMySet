@@ -10,8 +10,7 @@ import myset.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class SupersetAndSubsetTests {
 
@@ -28,41 +27,41 @@ public class SupersetAndSubsetTests {
 
     @Test
     public void isNotSubsetWhenNoIntersection() {
-        assertThat(otherSet.isSubsetOf(biggerSet), is(false));
+        assertThat(otherSet.isSubsetOf(biggerSet)).isFalse();
     }
 
     @Test
     public void isNotSupersetWhenNoIntersection() {
-        assertThat(biggerSet.isSupersetOf(otherSet), is(false));
+        assertThat(biggerSet.isSupersetOf(otherSet)).isFalse();
     }
 
     @Test
     public void isNonstrictSupersetOfItself() {
-        assertThat(smallSet.isSupersetOf(smallSet), is(true));
+        assertThat(smallSet.isSupersetOf(smallSet)).isTrue();
     }
 
     @Test
     public void isNonstrictSubsetOfItself() {
-        assertThat(smallSet.isSubsetOf(smallSet), is(true));
+        assertThat(smallSet.isSubsetOf(smallSet)).isTrue();
     }
 
     @Test
     public void whenNOTaSubset() {
-        assertThat(biggerSet.isSubsetOf(smallSet), is(false));
+        assertThat(biggerSet.isSubsetOf(smallSet)).isFalse();
     }
 
     @Test
     public void whenASetIsASubset() {
-        assertThat(smallSet.isSubsetOf(biggerSet), is(true));
+        assertThat(smallSet.isSubsetOf(biggerSet)).isTrue();
     }
 
     @Test
     public void whenNOTaSuperset() {
-        assertThat(smallSet.isSupersetOf(biggerSet), is(false));
+        assertThat(smallSet.isSupersetOf(biggerSet)).isFalse();
     }
 
     @Test
     public void whenASetIsASuperset() {
-        assertThat(biggerSet.isSupersetOf(smallSet), is(true));
+        assertThat(biggerSet.isSupersetOf(smallSet)).isTrue();
     }
 }
