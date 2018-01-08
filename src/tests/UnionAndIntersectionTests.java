@@ -10,8 +10,7 @@ import myset.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class UnionAndIntersectionTests {
     private Set emptySet;
@@ -30,21 +29,21 @@ public class UnionAndIntersectionTests {
 
     private void assertSetContainsAll(Set result, String[] expectedElements) {
         for (String nextElement : expectedElements) {
-            assertThat(result.contains(nextElement), is(true));
+            assertThat(result.contains(nextElement)).isTrue();
         }
     }
 
     @Test
     public void intersectionDoesNOTContainElementsThatAreOnlyInOneOfTheSets() {
         Set result = a.intersect(b);
-        assertThat(result.contains(ONLY_IN_B), is(false));
-        assertThat(result.contains(ONLY_IN_A), is(false));
+        assertThat(result.contains(ONLY_IN_B)).isFalse();
+        assertThat(result.contains(ONLY_IN_A)).isFalse();
     }
 
     @Test
     public void intersectionContainsElementsThatExistInBothSets() {
         Set result = a.intersect(b);
-        assertThat(result.contains(IN_A_AND_B), is(true));
+        assertThat(result.contains(IN_A_AND_B)).isTrue();
     }
 
     @Test
