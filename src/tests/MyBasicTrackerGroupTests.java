@@ -1,7 +1,7 @@
 package tests;
 
-import myset.InvalidElementException;
-import myset.Set;
+import crittermaps.InvalidElementException;
+import crittermaps.TrackerGroup;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,14 +9,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class MyBasicSetTests {
+public class MyBasicTrackerGroupTests {
     private static final String ITEM_TO_FIND =
             "Not the 1st item and contains a typ0";
-    private Set set;
+    private TrackerGroup trackerGroup;
 
     @BeforeEach
     public void initializeSet() {
-        set = new Set(new String[] {
+        trackerGroup = new TrackerGroup(new String[] {
                 "some uninteresting item",
                 ITEM_TO_FIND });
     }
@@ -25,7 +25,7 @@ public class MyBasicSetTests {
     public void throwsOnNullElement() {
         assertThrows(InvalidElementException.class,
                 () -> {
-                    new Set(new String[]{
+                    new TrackerGroup(new String[]{
                             "good element before bad data",
                             null});
                 });
@@ -34,22 +34,22 @@ public class MyBasicSetTests {
 
     @Test
     public void doesNotContainAnElement() {
-        assertThat(set.contains("not an element")).isFalse();
+        assertThat(trackerGroup.contains("not an element")).isFalse();
     }
 
     @Test
     public void containsAnElement() {
-        assertThat(set.contains(ITEM_TO_FIND)).isTrue();
+        assertThat(trackerGroup.contains(ITEM_TO_FIND)).isTrue();
     }
 
     @Test
     public void isNotEmpty() {
-        assertThat(set.isEmpty()).isFalse();
+        assertThat(trackerGroup.isEmpty()).isFalse();
     }
 
     @Test
     public void isEmptyWhenConstructed() {
-        Set emptySet = new Set();
-        assertThat(emptySet.isEmpty()).isTrue();
+        TrackerGroup emptyTrackerGroup = new TrackerGroup();
+        assertThat(emptyTrackerGroup.isEmpty()).isTrue();
     }
 }

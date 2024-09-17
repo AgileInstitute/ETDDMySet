@@ -1,4 +1,4 @@
-package myset;
+package crittermaps;
 
 public class InvalidElementException extends RuntimeException {
     public InvalidElementException(String badElementValue)

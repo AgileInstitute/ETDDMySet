@@ -1,4 +1,4 @@
-package myset;
+package crittermaps;
 
 /**
  * Essential Test-Driven Development
@@ -9,18 +9,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Set {
+public class TrackerGroup {
     private final List<String> elements;
 
-    public Set() {
+    public TrackerGroup() {
         this(new ArrayList<String>());
     }
 
-    private Set(List<String> listOfElements) {
+    private TrackerGroup(List<String> listOfElements) {
         this.elements = listOfElements;
     }
 
-    public Set(String[] arrayOfElements) {
+    public TrackerGroup(String[] arrayOfElements) {
         this();
         Collections.addAll(this.elements, arrayOfElements);
         checkElements();
@@ -34,11 +34,11 @@ public class Set {
         }
     }
 
-    public Set union(Set otherSet) {
+    public TrackerGroup union(TrackerGroup otherTrackerGroup) {
         List<String> allElements = new ArrayList<String>();
         allElements.addAll(this.elements);
-        allElements.addAll(otherSet.elements);
-        return new Set(allElements);
+        allElements.addAll(otherTrackerGroup.elements);
+        return new TrackerGroup(allElements);
     }
 
     public boolean isEmpty() {
@@ -49,29 +49,29 @@ public class Set {
         return elements.contains(elementToFind);
     }
 
-    public Set intersect(Set otherSet) {
+    public TrackerGroup intersect(TrackerGroup otherTrackerGroup) {
         List<String> foundInBoth = new ArrayList<String>();
-        otherSet.elements.forEach(
+        otherTrackerGroup.elements.forEach(
                 nextElement -> {
                     if (contains(nextElement))
                         foundInBoth.add(nextElement);
                 });
-        return new Set(foundInBoth);
+        return new TrackerGroup(foundInBoth);
     }
 
-    public boolean isSupersetOf(Set otherSet) {
-        for (String nextElement : otherSet.elements) {
+    public boolean isSupersetOf(TrackerGroup otherTrackerGroup) {
+        for (String nextElement : otherTrackerGroup.elements) {
             if (!contains(nextElement))
                 return false;
         }
         return true;
     }
 
-    public boolean isSubsetOf(Set otherSet) {
-        return otherSet.isSupersetOf(this);
+    public boolean isSubsetOf(TrackerGroup otherTrackerGroup) {
+        return otherTrackerGroup.isSupersetOf(this);
     }
 
-    public boolean isEqualTo(Set otherSet) {
-        return this.isSupersetOf(otherSet) && otherSet.isSupersetOf(this);
+    public boolean isEqualTo(TrackerGroup otherTrackerGroup) {
+        return this.isSupersetOf(otherTrackerGroup) && otherTrackerGroup.isSupersetOf(this);
     }
 }

@@ -1,11 +1,11 @@
 package tests;
 
-import myset.InvalidElementException;
+import crittermaps.InvalidElementException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Java6Assertions.*;
 
-public class MySetExceptionTests {
+public class MyTrackerGroupExceptionTests {
     @Test
     public void messageFormatsNullReference() {
         InvalidElementException myException =

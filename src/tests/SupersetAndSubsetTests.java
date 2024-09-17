@@ -5,7 +5,7 @@ package tests;
  * Copyright (c) Robert Myers 2017.
  */
 
-import myset.Set;
+import crittermaps.TrackerGroup;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,54 +14,54 @@ import static org.assertj.core.api.Assertions.*;
 
 public class SupersetAndSubsetTests {
 
-    private Set smallSet;
-    private Set biggerSet;
-    private Set otherSet;
+    private TrackerGroup smallTrackerGroup;
+    private TrackerGroup biggerTrackerGroup;
+    private TrackerGroup otherTrackerGroup;
 
     @BeforeEach
     public void createSets() {
-        smallSet = new Set(new String[] { "a", "b", "c" });
-        biggerSet = new Set(new String[] { "a", "b", "c", "d", "e"});
-        otherSet = new Set(new String[] { "x", "y", "z" });
+        smallTrackerGroup = new TrackerGroup(new String[] { "a", "b", "c" });
+        biggerTrackerGroup = new TrackerGroup(new String[] { "a", "b", "c", "d", "e"});
+        otherTrackerGroup = new TrackerGroup(new String[] { "x", "y", "z" });
     }
 
     @Test
     public void isNotSubsetWhenNoIntersection() {
-        assertThat(otherSet.isSubsetOf(biggerSet)).isFalse();
+        assertThat(otherTrackerGroup.isSubsetOf(biggerTrackerGroup)).isFalse();
     }
 
     @Test
     public void isNotSupersetWhenNoIntersection() {
-        assertThat(biggerSet.isSupersetOf(otherSet)).isFalse();
+        assertThat(biggerTrackerGroup.isSupersetOf(otherTrackerGroup)).isFalse();
     }
 
     @Test
     public void isNonstrictSupersetOfItself() {
-        assertThat(smallSet.isSupersetOf(smallSet)).isTrue();
+        assertThat(smallTrackerGroup.isSupersetOf(smallTrackerGroup)).isTrue();
     }
 
     @Test
     public void isNonstrictSubsetOfItself() {
-        assertThat(smallSet.isSubsetOf(smallSet)).isTrue();
+        assertThat(smallTrackerGroup.isSubsetOf(smallTrackerGroup)).isTrue();
     }
 
     @Test
     public void whenNOTaSubset() {
-        assertThat(biggerSet.isSubsetOf(smallSet)).isFalse();
+        assertThat(biggerTrackerGroup.isSubsetOf(smallTrackerGroup)).isFalse();
     }
 
     @Test
     public void whenASetIsASubset() {
-        assertThat(smallSet.isSubsetOf(biggerSet)).isTrue();
+        assertThat(smallTrackerGroup.isSubsetOf(biggerTrackerGroup)).isTrue();
     }
 
     @Test
     public void whenNOTaSuperset() {
-        assertThat(smallSet.isSupersetOf(biggerSet)).isFalse();
+        assertThat(smallTrackerGroup.isSupersetOf(biggerTrackerGroup)).isFalse();
     }
 
     @Test
     public void whenASetIsASuperset() {
-        assertThat(biggerSet.isSupersetOf(smallSet)).isTrue();
+        assertThat(biggerTrackerGroup.isSupersetOf(smallTrackerGroup)).isTrue();
     }
 }

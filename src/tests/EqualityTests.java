@@ -5,7 +5,7 @@ package tests;
  * Copyright (c) Robert Myers 2017.
  */
 
-import myset.Set;
+import crittermaps.TrackerGroup;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,28 +13,28 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 public class EqualityTests {
-    private final Set aSet = new Set(new String[] { "this", "is", "interesting!" });
-    private final Set anEqualSet = new Set(new String[] { "this", "is", "interesting!" });
+    private final TrackerGroup aTrackerGroup = new TrackerGroup(new String[] { "this", "is", "interesting!" });
+    private final TrackerGroup anEqualTrackerGroup = new TrackerGroup(new String[] { "this", "is", "interesting!" });
 
     @Test
     public void operationIsCommutative() {
-        assertThat(anEqualSet.isEqualTo(aSet)).isTrue();
+        assertThat(anEqualTrackerGroup.isEqualTo(aTrackerGroup)).isTrue();
     }
 
     @Test
     public void twoSetsAreEqualWhenTheyHaveTheExactSameElements() {
-        assertThat(aSet.isEqualTo(anEqualSet)).isTrue();
+        assertThat(aTrackerGroup.isEqualTo(anEqualTrackerGroup)).isTrue();
     }
 
     @Test
     public void whenSetsAreTheSameObject() {
-        assertThat(aSet.isEqualTo(aSet)).isTrue();
+        assertThat(aTrackerGroup.isEqualTo(aTrackerGroup)).isTrue();
     }
 
     @Test
     public void whenSetsAreNotEqual() {
-        Set aDifferentSet = new Set(new String[] {"also", "interesting!" });
-        assertThat(aSet.isEqualTo(aDifferentSet)).isFalse();
+        TrackerGroup aDifferentTrackerGroup = new TrackerGroup(new String[] {"also", "interesting!" });
+        assertThat(aTrackerGroup.isEqualTo(aDifferentTrackerGroup)).isFalse();
     }
 
     @Test
