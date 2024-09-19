@@ -10,24 +10,20 @@ import java.util.Collections;
 import java.util.List;
 
 public class TrackerGroup {
-    private final List<String> elements;
+    private final List<String> trackerIDs;
 
-    public TrackerGroup() {
+    private TrackerGroup(List<String> listOfIDs) {
+        this.trackerIDs = listOfIDs;
+    }
+
+    public TrackerGroup(String[] trackerIDs) {
         this(new ArrayList<String>());
-    }
-
-    private TrackerGroup(List<String> listOfElements) {
-        this.elements = listOfElements;
-    }
-
-    public TrackerGroup(String[] arrayOfElements) {
-        this();
-        Collections.addAll(this.elements, arrayOfElements);
+        Collections.addAll(this.trackerIDs, trackerIDs);
         checkElements();
     }
 
     private void checkElements() {
-        for (String candidate : elements) {
+        for (String candidate : trackerIDs) {
             if (candidate == null) {
                 throw new InvalidElementException(candidate);
             }
@@ -36,22 +32,22 @@ public class TrackerGroup {
 
     public TrackerGroup union(TrackerGroup otherTrackerGroup) {
         List<String> allElements = new ArrayList<String>();
-        allElements.addAll(this.elements);
-        allElements.addAll(otherTrackerGroup.elements);
+        allElements.addAll(this.trackerIDs);
+        allElements.addAll(otherTrackerGroup.trackerIDs);
         return new TrackerGroup(allElements);
     }
 
     public boolean isEmpty() {
-        return elements.isEmpty();
+        return trackerIDs.isEmpty();
     }
 
     public boolean contains(String elementToFind) {
-        return elements.contains(elementToFind);
+        return trackerIDs.contains(elementToFind);
     }
 
     public TrackerGroup intersect(TrackerGroup otherTrackerGroup) {
         List<String> foundInBoth = new ArrayList<String>();
-        otherTrackerGroup.elements.forEach(
+        otherTrackerGroup.trackerIDs.forEach(
                 nextElement -> {
                     if (contains(nextElement))
                         foundInBoth.add(nextElement);
@@ -60,7 +56,7 @@ public class TrackerGroup {
     }
 
     public boolean isSupersetOf(TrackerGroup otherTrackerGroup) {
-        for (String nextElement : otherTrackerGroup.elements) {
+        for (String nextElement : otherTrackerGroup.trackerIDs) {
             if (!contains(nextElement))
                 return false;
         }

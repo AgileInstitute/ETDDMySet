@@ -49,7 +49,7 @@ public class MyBasicTrackerGroupTests {
 
     @Test
     public void isEmptyWhenConstructed() {
-        TrackerGroup emptyTrackerGroup = new TrackerGroup();
+        TrackerGroup emptyTrackerGroup = new TrackerGroup(new String[]{});
         assertThat(emptyTrackerGroup.isEmpty()).isTrue();
     }
 }

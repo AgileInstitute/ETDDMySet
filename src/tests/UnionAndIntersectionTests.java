@@ -22,7 +22,7 @@ public class UnionAndIntersectionTests {
 
     @BeforeEach
     public void createSampleSets() {
-        emptyTrackerGroup = new TrackerGroup();
+        emptyTrackerGroup = new TrackerGroup(new String[]{});
         a = new TrackerGroup(new String[] {ONLY_IN_A, IN_A_AND_B});
         b = new TrackerGroup(new String[] {IN_A_AND_B, ONLY_IN_B});
     }
