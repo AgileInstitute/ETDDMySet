@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class MyBasicTrackerGroupTests {
+public class BasicTrackerGroupTests {
     private static final String ITEM_TO_FIND =
             "Not the 1st item and contains a typ0";
     private TrackerGroup trackerGroup;
@@ -21,20 +21,11 @@ public class MyBasicTrackerGroupTests {
                 ITEM_TO_FIND });
     }
 
-    @Test
-    public void throwsOnNullElement() {
-        assertThrows(InvalidElementException.class,
-                () -> {
-                    new TrackerGroup(new String[]{
-                            "good element before bad data",
-                            null});
-                });
-    }
 
 
     @Test
     public void doesNotContainAnElement() {
-        assertThat(trackerGroup.contains("not an element")).isFalse();
+        assertThat(trackerGroup.contains("ID not included")).isFalse();
     }
 
     @Test

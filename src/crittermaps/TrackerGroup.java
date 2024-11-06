@@ -1,10 +1,5 @@
 package crittermaps;
 
-/**
- * Essential Test-Driven Development
- * Copyright (c) Robert Myers 2017.
- */
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,19 +25,21 @@ public class TrackerGroup {
         }
     }
 
-    public TrackerGroup union(TrackerGroup otherTrackerGroup) {
-        List<String> allElements = new ArrayList<String>();
-        allElements.addAll(this.trackerIDs);
-        allElements.addAll(otherTrackerGroup.trackerIDs);
-        return new TrackerGroup(allElements);
+    public TrackerGroup combinedWith(TrackerGroup otherTrackerGroup) {
+
+        List<String> allIDs = new ArrayList<String>();
+        allIDs.addAll(this.trackerIDs);
+        allIDs.addAll(otherTrackerGroup.trackerIDs);
+        return new TrackerGroup(allIDs);
+
     }
 
     public boolean isEmpty() {
         return trackerIDs.isEmpty();
     }
 
-    public boolean contains(String elementToFind) {
-        return trackerIDs.contains(elementToFind);
+    public boolean contains(String trackerToFind) {
+        return trackerIDs.contains(trackerToFind);
     }
 
     public TrackerGroup intersect(TrackerGroup otherTrackerGroup) {
