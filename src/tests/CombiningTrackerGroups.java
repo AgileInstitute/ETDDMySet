@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class CombiningTrackerGroupsTests {
+public class CombiningTrackerGroups {
     private TrackerGroup emptyGroup;
     private TrackerGroup groupA;
     private TrackerGroup groupB;
@@ -36,6 +36,7 @@ public class CombiningTrackerGroupsTests {
         TrackerGroup result = groupB.combinedWith(groupA);
         assertGroupContainsAll(result,
                 new String[] {IN_GROUP_A, IN_A_AND_B, IN_GROUP_B});
+        assertThat(result.idCount()).isEqualTo(3);
     }
 
     @Test
@@ -44,16 +45,17 @@ public class CombiningTrackerGroupsTests {
         assertGroupContainsAll(result,
                 new String[] {IN_GROUP_A, IN_A_AND_B});
     }
+
     @Test
-    public void intersectionDoesNOTContainElementsThatAreOnlyInOneOfTheSets() {
-        TrackerGroup result = groupA.intersect(groupB);
+    public void overlapDoesNOTContainIDsThatAreNOTInBothSets() {
+        TrackerGroup result = groupA.overlap(groupB);
         assertThat(result.contains(IN_GROUP_B)).isFalse();
         assertThat(result.contains(IN_GROUP_A)).isFalse();
     }
 
     @Test
-    public void intersectionContainsElementsThatExistInBothSets() {
-        TrackerGroup result = groupA.intersect(groupB);
+    public void overlapContainsIDWhenInBothGroups() {
+        TrackerGroup result = groupA.overlap(groupB);
         assertThat(result.contains(IN_A_AND_B)).isTrue();
     }
 }

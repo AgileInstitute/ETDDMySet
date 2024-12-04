@@ -1,6 +1,5 @@
 package tests;
 
-import crittermaps.InvalidElementException;
 import crittermaps.TrackerGroup;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +20,11 @@ public class BasicTrackerGroupTests {
                 ITEM_TO_FIND });
     }
 
-
+    @Test
+    public void canCountNumberOfIDs() {
+        TrackerGroup group = new TrackerGroup(new String[] {"one", "two", "three"});
+        assertThat(group.idCount()).isEqualTo(3);
+    }
 
     @Test
     public void doesNotContainAnElement() {
@@ -39,7 +42,7 @@ public class BasicTrackerGroupTests {
     }
 
     @Test
-    public void isEmptyWhenConstructed() {
+    public void isEmptyWhenArrayIsEmpty() {
         TrackerGroup emptyTrackerGroup = new TrackerGroup(new String[]{});
         assertThat(emptyTrackerGroup.isEmpty()).isTrue();
     }

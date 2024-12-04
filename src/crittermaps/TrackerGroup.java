@@ -1,37 +1,29 @@
 package crittermaps;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class TrackerGroup {
-    private final List<String> trackerIDs;
+    private static Collection<String> freshStoreForIDs() {
+        return new HashSet<String>();
+    }
 
-    private TrackerGroup(List<String> listOfIDs) {
+    private final Collection<String> trackerIDs;
+
+    private TrackerGroup(Collection<String> listOfIDs) {
         this.trackerIDs = listOfIDs;
     }
 
     public TrackerGroup(String[] trackerIDs) {
-        this(new ArrayList<String>());
+        this(freshStoreForIDs());
+        checkElements(trackerIDs);
         Collections.addAll(this.trackerIDs, trackerIDs);
-        checkElements();
-    }
-
-    private void checkElements() {
-        for (String candidate : trackerIDs) {
-            if (candidate == null) {
-                throw new InvalidElementException(candidate);
-            }
-        }
     }
 
     public TrackerGroup combinedWith(TrackerGroup otherTrackerGroup) {
-
-        List<String> allIDs = new ArrayList<String>();
+        Collection<String> allIDs = freshStoreForIDs();
         allIDs.addAll(this.trackerIDs);
         allIDs.addAll(otherTrackerGroup.trackerIDs);
         return new TrackerGroup(allIDs);
-
     }
 
     public boolean isEmpty() {
@@ -42,17 +34,21 @@ public class TrackerGroup {
         return trackerIDs.contains(trackerToFind);
     }
 
-    public TrackerGroup intersect(TrackerGroup otherTrackerGroup) {
-        List<String> foundInBoth = new ArrayList<String>();
+    public int idCount() {
+        return trackerIDs.size();
+    }
+
+    public TrackerGroup overlap(TrackerGroup otherTrackerGroup) {
+        Collection<String> foundInBoth = freshStoreForIDs();
         otherTrackerGroup.trackerIDs.forEach(
-                nextElement -> {
-                    if (contains(nextElement))
-                        foundInBoth.add(nextElement);
+                nextID -> {
+                    if (contains(nextID))
+                        foundInBoth.add(nextID);
                 });
         return new TrackerGroup(foundInBoth);
     }
 
-    public boolean isSupersetOf(TrackerGroup otherTrackerGroup) {
+    public boolean containsAll(TrackerGroup otherTrackerGroup) {
         for (String nextElement : otherTrackerGroup.trackerIDs) {
             if (!contains(nextElement))
                 return false;
@@ -60,11 +56,16 @@ public class TrackerGroup {
         return true;
     }
 
-    public boolean isSubsetOf(TrackerGroup otherTrackerGroup) {
-        return otherTrackerGroup.isSupersetOf(this);
+    public boolean isEqualTo(TrackerGroup other) {
+        return this.containsAll(other) && other.containsAll(this);
     }
 
-    public boolean isEqualTo(TrackerGroup otherTrackerGroup) {
-        return this.isSupersetOf(otherTrackerGroup) && otherTrackerGroup.isSupersetOf(this);
+    private void checkElements(String[] trackerIDs) {
+        for (String candidate : trackerIDs) {
+            if (candidate == null) {
+                throw new InvalidElementException(candidate);
+            }
+        }
     }
+
 }
