@@ -1,6 +1,6 @@
 package tests;
 
-import crittermaps.InvalidElementException;
+import crittermaps.InvalidIDException;
 import crittermaps.TrackerGroup;
 import org.junit.jupiter.api.Test;
 
@@ -10,20 +10,20 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class Exceptions {
     @Test
     public void messageFormatsNullReference() {
-        InvalidElementException myException =
-                new InvalidElementException(null);
+        InvalidIDException myException =
+                new InvalidIDException(null);
         assertThat(myException.getMessage()).contains("[null]");
     }
     @Test
     public void messageContainsTheInvalidValue() {
-        InvalidElementException myException =
-                new InvalidElementException("bleep!");
+        InvalidIDException myException =
+                new InvalidIDException("bleep!");
         assertThat(myException.getMessage()).contains("[\"bleep!\"]");
     }
 
     @Test
     public void throwsOnNullID() {
-        assertThrows(InvalidElementException.class,
+        assertThrows(InvalidIDException.class,
                 () -> new TrackerGroup(new String[]{
                         "good ID before bad data",
                         null}));

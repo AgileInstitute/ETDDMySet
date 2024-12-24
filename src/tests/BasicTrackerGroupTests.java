@@ -14,7 +14,7 @@ public class BasicTrackerGroupTests {
     private TrackerGroup trackerGroup;
 
     @BeforeEach
-    public void initializeSet() {
+    public void initializeGroup() {
         trackerGroup = new TrackerGroup(new String[] {
                 "some uninteresting item",
                 ITEM_TO_FIND });
@@ -27,12 +27,12 @@ public class BasicTrackerGroupTests {
     }
 
     @Test
-    public void doesNotContainAnElement() {
+    public void doesNotContainAnID() {
         assertThat(trackerGroup.contains("ID not included")).isFalse();
     }
 
     @Test
-    public void containsAnElement() {
+    public void containsAnID() {
         assertThat(trackerGroup.contains(ITEM_TO_FIND)).isTrue();
     }
 

@@ -15,7 +15,7 @@ public class TrackerGroup {
 
     public TrackerGroup(String[] trackerIDs) {
         this(freshStoreForIDs());
-        checkElements(trackerIDs);
+        checkIDs(trackerIDs);
         Collections.addAll(this.trackerIDs, trackerIDs);
     }
 
@@ -60,10 +60,10 @@ public class TrackerGroup {
         return this.containsAll(other) && other.containsAll(this);
     }
 
-    private void checkElements(String[] trackerIDs) {
+    private void checkIDs(String[] trackerIDs) {
         for (String candidate : trackerIDs) {
             if (candidate == null) {
-                throw new InvalidElementException(candidate);
+                throw new InvalidIDException(candidate);
             }
         }
     }
